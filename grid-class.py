@@ -1,4 +1,9 @@
 class Grid:
+    def isSpaceWater(self, row, col):
+        if self.grid[row][col] == "~":
+            return True
+        else:
+            return False
     def __init__(self):
         self.grid = [["~","~","~","~","~","~","~","~","~","~"],
                           ["~","~","~","~","~","~","~","~","~","~"],

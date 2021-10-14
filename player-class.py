@@ -16,12 +16,6 @@ class Player:
 
     # This is a useful method to determine if the space is "~" or something else
     # Send it the grid you want to check, so ship or shot
-    def isPlacementLegal(self , grid, row , col ):
-        if( grid[row][col] == "~"):
-            return true
-        else:
-            return false
-
     def createShipGrid(self):
         placeShip( "A" , 5 )
         placeShip( "B", 4 )
