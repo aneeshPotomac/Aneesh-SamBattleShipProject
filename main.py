@@ -1,16 +1,38 @@
-# This is a sample Python script.
+class Grid:
+    def __init__(self):
+        self.grid = [["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"],
+                          ["~","~","~","~","~","~","~","~","~","~"] ]
+    # Change a single position
+    def changeSingleSpace(self, row, col , value):
+        self.grid[row][col] = value
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    # Row = the row to change
+    # Value = the string to put into the list
+    # colStart = the start of the column to be changed
+    # size = number of spaces in the column to change
+    def changeRow(self , row , value , colStart , size ):
+        for col in range( colStart , colStart + size ) :
+            self.grid[row][col] = value
 
+    # Col = the col to change
+    # Value = the string to put into the list
+    # rowStart = the start of the row to be changed
+    # size = number of spaces in the row to change
+    def changeCol(self , col , value , rowStart , size ):
+        for row in range( rowStart , rowStart + size ) :
+            self.grid[row][col] = value
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def returnLocation(self , row , col ):
+        return self.grid[row][col]
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def printGrid(self):
+        for row in self.grid :
+            print( row )
