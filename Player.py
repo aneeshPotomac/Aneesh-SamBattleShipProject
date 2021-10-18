@@ -6,12 +6,16 @@ class Player:
         self.gridShips = Grid()
         self.gridShots = Grid()
 
-    def takeTurn(self):
+    def takeTurn(self, otherPlayer ):
         # over write in the HumanPlayer and ComputerPlayer subclasses
         pass
 
     def placeShip(self, ship , size ):
         # over write in the HumanPlayer and ComputerPlayer subclasses
+        pass
+
+    def stillHasShips(self):
+        # over write in the HumanPlayer and CounterPlayer subclasses
         pass
 
     # This is a useful method to determine if the space is "~" or something else
