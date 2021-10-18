@@ -11,7 +11,7 @@ class Player:
         pass
 
     def placeShip(self, ship , size ):
-        # over write in the HumanPlayer and ComputerPlayer subclasses
+
         pass
 
     # This is a useful method to determine if the space is "~" or something else
