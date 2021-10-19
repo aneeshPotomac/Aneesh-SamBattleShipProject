@@ -7,11 +7,9 @@ class ComputerPlayer(Player):
     for i in range(0, 99):
         arr.append(i)
     def __init__(self):
-        self.gridShips = Grid()
-        self.gridShots = Grid()
-        super().__init__(self)
+        super().__init__()
 
-    def takeTurn(self,other_player):
+    def takeTurn(self, other_player):
         random.shuffle(arr)
         row_col = arr.pop()
         if row_col < 9:
@@ -22,51 +20,40 @@ class ComputerPlayer(Player):
             col = row_coll % 10
         if other_player.gridShips.isSpaceWater(row, col):
             print("you Missed")
+            self.grisShips.changeSingleSpace(row, col, "m")
+            other_player.grisShips.changeSingleSpace(row, col, "m")
         else:
             print("hit")
             other_player.gridShips.changeSingleSpace(row, col, "h")
-
-    def placeShip(self, ship, size):
-        t = true
+            self.gridShips.changeSingleSpace(row, col, "m")
+    def placeShip(self, ship , size ):
+        t = True
         while t:
             a = random.randint(1, 2)  # 1 represents horizontal and 2 is vertical
             b = random.randint(0, 9-size)
             c = random.randint(0, 9-size)
             if a == 1:
                 for i in range(size):
-                    if isSpaceWater(b, i+c):
-                        if i == size:
-                            changeRow(b, ship, c, size)
-                            t = false
+                    if self.gridShips.isSpaceWater(b, i+c):
+                        if i == size-1:
+                            self.gridShips.changeRow(b, ship, c, size)
+                            t = False
                         continue
                     else:
                         break
             elif a == 2:
                 for i in range(size):
-                    if isSpaceWater(b+i, c):
-                        if i == size:
-                            # Col = the col to change
-                            # Value = the string to put into the list
-                            # rowStart = the start of the row to be changed
-                            # size = number of spaces in the row to change
-                            changeCol(c, ship, b, size)
-                            t = false
+                    if self.gridShips.isSpaceWater(b+i, c):
+                        if i == size-1:
+                            self.gridShips.changeCol(c, ship, b, size)
+                            t = False
                         continue
                     else:
                         break
 
-    # This is a useful method to determine if the space is "~" or something else
-    # Send it the grid you want to check, so ship or shot
-    def createShipGrid(self):
-        placeShip( "A" , 5 )
-        placeShip( "B", 4 )
-        placeShip( "C", 3 )
-        placeShip( "S", 3 )
-        placeShip( "D", 2 )
-
-    def printGrids(self):
-        print("Ship Grid")
-        self.gridShips.printGrid()
-        print("Shot Grid")
-        self.gridShots.printGrid()
-
+    def stillHasShips(self):
+        pass
+        for i in range(10):
+            for j in range(10):
+          #      if self.gridShips[i, j] != "x" or self.gridShips[i, j] != "~":
+                    return true

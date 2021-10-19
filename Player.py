@@ -17,7 +17,7 @@ class Player:
     # This is a useful method to determine if the space is "~" or something else
     # Send it the grid you want to check, so ship or shot
     def createShipGrid(self):
-        placeShip( "A" , 5 )
+        placeShip("A", 5 )
         placeShip( "B", 4 )
         placeShip( "C", 3 )
         placeShip( "S", 3 )
@@ -28,3 +28,8 @@ class Player:
         self.gridShips.printGrid()
         print("Shot Grid")
         self.gridShots.printGrid()
+    def stillHasShips(self):
+        pass
+
+
+
