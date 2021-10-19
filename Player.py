@@ -17,11 +17,11 @@ class Player:
     # This is a useful method to determine if the space is "~" or something else
     # Send it the grid you want to check, so ship or shot
     def createShipGrid(self):
-        placeShip("A", 5 )
-        placeShip( "B", 4 )
-        placeShip( "C", 3 )
-        placeShip( "S", 3 )
-        placeShip( "D", 2 )
+        self.placeShip("A", 5 )
+        self.placeShip( "B", 4 )
+        self.placeShip( "C", 3 )
+        self.placeShip( "S", 3 )
+        self.placeShip( "D", 2 )
 
     def printGrids(self):
         print("Ship Grid")
