@@ -3,29 +3,28 @@ import random
 
 
 class ComputerPlayer(Player):
-    arr = []
-    for i in range(0, 99):
-        arr.append(i)
     def __init__(self):
         super().__init__()
-
     def takeTurn(self, other_player):
-        random.shuffle(arr)
-        row_col = arr.pop()
-        if row_col < 9:
-            row = 1
-            col = row_col
-        else:
-            row = row_col // 10
-            col = row_coll % 10
+        same_num = True
+        while same_num:
+            row_col = random.randint(0, 99)
+            if row_col < 9:
+                row = 1
+                col = row_col
+            else:
+                row = row_col // 10
+                col = row_col % 10
+            if self.gridShots.returnLocation(row, col) == "~":
+                same_num = False
         if other_player.gridShips.isSpaceWater(row, col):
             print("you Missed")
-            self.grisShips.changeSingleSpace(row, col, "m")
-            other_player.grisShips.changeSingleSpace(row, col, "m")
+            self.gridShots.changeSingleSpace(row, col, "m")
+            other_player.gridShips.changeSingleSpace(row, col, "m")
         else:
             print("hit")
-            other_player.gridShips.changeSingleSpace(row, col, "h")
-            self.gridShips.changeSingleSpace(row, col, "m")
+            other_player.gridShots.changeSingleSpace(row, col, "h")
+            self.gridShips.changeSingleSpace(row, col, "h")
     def placeShip(self, ship , size ):
         t = True
         while t:
