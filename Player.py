@@ -6,7 +6,7 @@ class Player:
         self.gridShips = Grid()
         self.gridShots = Grid()
 
-    def takeTurn(self):
+    def takeTurn(self,other_player):
         # over write in the HumanPlayer and ComputerPlayer subclasses
         pass
 

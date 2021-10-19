@@ -1,6 +1,7 @@
 from Player import Player
 import random
 
+
 class ComputerPlayer(Player):
     arr = []
     for i in range(0, 99):
@@ -10,7 +11,7 @@ class ComputerPlayer(Player):
         self.gridShots = Grid()
         super().__init__(self)
 
-    def takeTurn(self):
+    def takeTurn(self,other_player):
         random.shuffle(arr)
         row_col = arr.pop()
         if row_col < 9:
@@ -19,15 +20,11 @@ class ComputerPlayer(Player):
         else:
             row = row_col // 10
             col = row_coll % 10
-        if otherperson.gridShips.isSpaceWater(row, col):
+        if other_player.gridShips.isSpaceWater(row, col):
             print("you Missed")
         else:
             print("hit")
-            otherperson.gridShips.changeSingleSpace(row, col, value)
-
-
-        
-        pass
+            other_player.gridShips.changeSingleSpace(row, col, "h")
 
     def placeShip(self, ship, size):
         t = true
