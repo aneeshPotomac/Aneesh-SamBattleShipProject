@@ -29,7 +29,12 @@ class Player:
         print("Shot Grid")
         self.gridShots.printGrid()
     def stillHasShips(self):
-        pass
+        for i in range (10):
+            for j in range(10):
+                if self.gridShips.returnLocation(j,i) == "A" or "B" or "C" or "S" or "D":
+                    return True
+        return False
+
 
 
 
