@@ -49,4 +49,10 @@ class ComputerPlayer(Player):
                         continue
                     else:
                         break
+    def stillHasShips(self):
+        for i in range(10):
+            for j in range(10):
+                if self.gridShips.returnLocation(i, j) == "S" or "A" or "B" or "C" or "D":
+                    return true
+        return false
 
