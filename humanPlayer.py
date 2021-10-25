@@ -27,8 +27,10 @@ class humanPlayer(Player) :
             else : #if all the code has been run and selectionIsValid is true than change the selected coordinate points to the ship value
                 if direction == "down" :
                     self.gridShips.changeCol(locationCol , ship , locationRow , size)
+                    self.printGrids()
                 if direction == "right" :
                     self.gridShips.changeRow(locationRow, ship, locationCol, size)
+                    self.printGrids()
 
     def takeTurn(self, otherPlayer):
         shotSelection = False
@@ -50,8 +52,8 @@ class humanPlayer(Player) :
                 continue
 
     def stillHasShips(self): #scans each grid and checks if there is a ship value left on the board
-        for row in range(9) :
-            for col in range(9) :
+        for row in range(10) :
+            for col in range(10) :
                 if self.gridShips.returnLocation(row,col) != "~" or self.gridShips.returnLocation(row,col) != "x" or self.gridShips.returnLocation(row,col) != "o" :
                     return false
                 else :
