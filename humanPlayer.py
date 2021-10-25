@@ -31,6 +31,7 @@ class humanPlayer(Player) :
                 if direction == "right" :
                     self.gridShips.changeRow(locationRow, ship, locationCol, size)
                     self.printGrids()
+
     def takeTurn(self, otherPlayer):
         shotSelection = False
         while shotSelection == False : #asks the user for a point to shoot
