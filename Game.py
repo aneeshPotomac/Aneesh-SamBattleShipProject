@@ -20,7 +20,7 @@ def Play(cp, hp):
 
 c = ComputerPlayer()
 h = humanPlayer()
-Play(c,h)
+Play(c, h)
 
 
 

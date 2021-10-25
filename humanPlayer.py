@@ -55,7 +55,7 @@ class humanPlayer(Player) :
         for row in range(10) :
             for col in range(10) :
                 if self.gridShips.returnLocation(row,col) != "~" or self.gridShips.returnLocation(row,col) != "x" or self.gridShips.returnLocation(row,col) != "o" :
-                    return false
+                    return False
                 else :
                     continue
 
