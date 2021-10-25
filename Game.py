@@ -1,13 +1,22 @@
+from PLayer import Player
 from ComputerPlayer import ComputerPlayer
 from humanPlayer import humanPlayer
-class Game:
-    def __init__(self, cp, hp):
-        pass
-
-    def Play(self, cp, hp):
-        while cp.stillHasShips() and hp.stillHasShips():
+    def Play(, cp, hp):
+        while self.cp.stillHasShips() and self.hp.stillHasShips():
             cp.createShipGrid()
+            cp.printGrids()
             hp.createShipGrid()
+            hp.printGrids()
+            hp.takeTurn()
+            hp.printGrids()
+            cp.printGrids()
+            cp.takeTurn()
+            hp.printGrids()
+            cp.printGrids()
+        if cp.stillHasShips() and not hp.stillHasShips():
+            print("you lost")
+        else:
+            print("you win")
 
 
 
