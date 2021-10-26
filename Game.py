@@ -4,19 +4,30 @@ from humanPlayer import humanPlayer
 def Play(cp, hp):
     cp.createShipGrid()
     hp.createShipGrid()
+    print(cp.stillHasShips())
+    print(hp.stillHasShips())
     while cp.stillHasShips() and hp.stillHasShips():
         cp.printGrids()
+        print("you are here #1")
         hp.printGrids()
-        hp.takeTurn()
-        hp.printGrids()
+        print("you are here #2")
+        cp.takeTurn(hp)
+        print("cp took turn")
         cp.printGrids()
-        cp.takeTurn()
+        print("printed cp grid")
         hp.printGrids()
+        print("printed hp grid")
+        hp.takeTurn(cp)
+        print("hp took turn")
+        hp.printGrids()
+        print("printed hp grid")
         cp.printGrids()
+        print("printed cp grid")
     if cp.stillHasShips() and not hp.stillHasShips():
         print("you lost")
     else:
         print("you win")
+
 
 c = ComputerPlayer()
 h = humanPlayer()

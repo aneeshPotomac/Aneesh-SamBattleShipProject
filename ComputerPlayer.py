@@ -18,11 +18,11 @@ class ComputerPlayer(Player):
             if self.gridShots.returnLocation(row, col) == "~":  # check if we haven't shot there before
                 same_num = False
         if other_player.gridShips.isSpaceWater(row, col):  # if the spot comp generated is water
-            print("you Missed")
+            print("Computer missed beep boop")
             self.gridShots.changeSingleSpace(row, col, "m")
             other_player.gridShips.changeSingleSpace(row, col, "m")
         else: # "otherwise the computer shot"
-            print("hit")
+            print("computer hit, world domination is inevitable")
             other_player.gridShots.changeSingleSpace(row, col, "h")
             self.gridShips.changeSingleSpace(row, col, "h")
     def placeShip(self, ship , size ):

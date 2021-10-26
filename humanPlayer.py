@@ -35,10 +35,10 @@ class humanPlayer(Player) :
     def takeTurn(self, otherPlayer):
         shotSelection = False
         while shotSelection == False : #asks the user for a point to shoot
-            shotLocationRow = input("what row")
-            shotLocationCol = input("what column")
+            shotLocationRow = int(input("what row"))
+            shotLocationCol = int(input("what column"))
             if shotLocationRow <= 9 and shotLocationCol <= 9 : #if the point is within the 10x10 gird
-                if not otherPlayer.gridShips.isSpaceWater() : #if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
+                if not otherPlayer.gridShips.isSpaceWater(shotLocationRow,shotLocationCol) : #if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
                     print("hit")
                     otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
                     self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
@@ -52,12 +52,11 @@ class humanPlayer(Player) :
                 continue
 
     def stillHasShips(self): #scans each grid and checks if there is a ship value left on the board
-        for row in range(10) :
-            for col in range(10) :
-                if self.gridShips.returnLocation(row,col) != "~" or self.gridShips.returnLocation(row,col) != "x" or self.gridShips.returnLocation(row,col) != "o" :
-                    return False
-                else :
-                    continue
+        for i in range(10):
+            for j in range(10):
+                if self.gridShips.returnLocation(i, j) == "S" or "A" or "B" or "C" or "D":
+                    return True
+        return False
 
 
 
