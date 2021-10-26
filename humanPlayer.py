@@ -42,11 +42,12 @@ class humanPlayer(Player) :
                     print("hit")
                     otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
                     self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
+
                 else : #if the space is water print miss and update both the gridShot of the player and the gridShips of the other player with an o
                     otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
                     self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
                     print("miss")
-
+                shotSelection= True
             else : #if the point is not within the grid prompt the user to reenter
                 print("input invalid")
                 continue

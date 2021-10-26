@@ -19,12 +19,12 @@ class ComputerPlayer(Player):
                 same_num = False
         if other_player.gridShips.isSpaceWater(row, col):  # if the spot comp generated is water
             print("Computer missed beep boop")
-            self.gridShots.changeSingleSpace(row, col, "m")
-            other_player.gridShips.changeSingleSpace(row, col, "m")
+            self.gridShots.changeSingleSpace(row, col, "o")
+            other_player.gridShips.changeSingleSpace(row, col, "o")
         else: # "otherwise the computer shot"
             print("computer hit, world domination is inevitable")
-            other_player.gridShots.changeSingleSpace(row, col, "h")
-            self.gridShips.changeSingleSpace(row, col, "h")
+            self.gridShots.changeSingleSpace(row, col, "x")
+            other_player.gridShips.changeSingleSpace(row, col, "x")
     def placeShip(self, ship , size ):
         t = True
         while t:
