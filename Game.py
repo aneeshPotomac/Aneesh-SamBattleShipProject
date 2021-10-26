@@ -9,8 +9,6 @@ def Play(cp, hp):
     while cp.stillHasShips() and hp.stillHasShips():
         cp.printGrids()
         print("you are here #1")
-        hp.printGrids()
-        print("you are here #2")
         cp.takeTurn(hp)
         print("cp took turn")
         cp.printGrids()
