@@ -175,10 +175,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Grid Class" />
       <item itemvalue="Python.ComputerPlayer" />
       <item itemvalue="Python.GameClient" />
       <item itemvalue="Python.Game" />
-      <item itemvalue="Python.Grid Class" />
       <item itemvalue="Python.computerplayertest" />
       <item itemvalue="Python.humanPlayer" />
     </list>
