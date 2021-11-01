@@ -47,10 +47,11 @@ class humanPlayer(Player) :
                     otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
                     self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
                     print("miss")
-
+                shotSelection = True
             else : #if the point is not within the grid prompt the user to reenter
                 print("input invalid")
                 continue
+
 
     def stillHasShips(self): #scans each grid and checks if there is a ship value left on the board
         for i in range(10):
