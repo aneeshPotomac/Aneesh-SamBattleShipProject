@@ -1,5 +1,6 @@
 from Player import Player
 from ComputerPlayer import ComputerPlayer
+from SmartComputerPlayer import SmartComputerPlayer
 from humanPlayer import humanPlayer
 def Play(cp, hp): # this method makes each player take a turn, printing the grids after each one, untill one player has no ships left
     cp.createShipGrid()
@@ -24,7 +25,8 @@ def Play(cp, hp): # this method makes each player take a turn, printing the grid
 
 c = ComputerPlayer()
 h = humanPlayer()
-Play(c, h)
+s = SmartComputerPlayer()
+Play(s, h)
 
 
 
