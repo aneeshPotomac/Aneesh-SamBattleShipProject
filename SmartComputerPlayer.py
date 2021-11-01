@@ -34,19 +34,20 @@ class SmartComputerPlayer(Player):
         multiDirectionalList = [up,down,right,left]
         i = 0
         if hit == True :
-            if not otherPlayer.gridShips.isSpaceWater(multiDirectionalList[i][0], multiDirectionalList[i][1]):  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
-                print("hit")
-                otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
-                self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
-                row = multiDirectionalList[i][0]
-                col = multiDirectionalList[i][1]
-                initialTT = False
-            else :
-                print("miss")
-                if i < len(multiDirectionalList) :
-                    i = i + 1
+            if multiDirectionalList[i][0] <= 9 and multiDirectionalList[i][1] <= 9:
+                if not otherPlayer.gridShips.isSpaceWater(multiDirectionalList[i][0], multiDirectionalList[i][1]):  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
+                    print("hit")
+                    otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
+                    self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
+                    row = multiDirectionalList[i][0]
+                    col = multiDirectionalList[i][1]
+                    initialTT = False
                 else :
-                    initialTT = True
+                    print("miss")
+                    if i < len(multiDirectionalList) :
+                        i = i + 1
+                    else :
+                        initialTT = True
         if initialTT == True :
             initialTakeTurn()
 
