@@ -9,6 +9,31 @@ class SmartComputerPlayer(Player):
         self.row = 0
         self.col = 0
 
+    def placeShip(self, ship , size ):
+        t = True
+        while t:
+            a = random.randint(1, 2)  # 1 represents horizontal and 2 is vertical
+            b = random.randint(0, 10-size)
+            c = random.randint(0, 10-size)
+            if a == 1:  # if we place horizontally
+                for i in range(size):  # when in range size
+                    if self.gridShips.isSpaceWater(b, i+c):  # Check the spaces to the right
+                        if i == size-1:  # if we are on the last value of i, change the values to ship name
+                            self.gridShips.changeRow(b, ship, c, size)
+                            t = False
+                        continue
+                    else:
+                        break
+            elif a == 2: # If we place vertically
+                for i in range(size): # when in range size
+                    if self.gridShips.isSpaceWater(b+i, c):  # Check the spaces under
+                        if i == size-1:  # if we are on the last value of i, change the values to ship name
+                            self.gridShips.changeCol(c, ship, b, size)
+                            t = False
+                        continue
+                    else:
+                        break
+
     def initialTakeTurn(self,otherPlayer):
         shotLocationRow = random.randint(0, 9)
         shotLocationCol = random.randint(0, 9)
