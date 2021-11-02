@@ -4,10 +4,11 @@ import random
 class SmartComputerPlayer(Player):
     def __init__(self):
         super().__init__()
-        self.initialTT = False
+        self.initialTT = True
         self.hit = False
         self.row = 0
         self.col = 0
+        self.i = 0
 
     def placeShip(self, ship , size ):
         t = True
@@ -46,42 +47,46 @@ class SmartComputerPlayer(Player):
             self.col = shotLocationCol
             self.hit = True
         else:  # if the space is water print miss and update both the gridShot of the player and the gridShips of the other player with an o
-            otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
-            self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "o")
+            otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "O")
+            self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "O")
             self.hit = False
             print("miss")
 
     def takeTurn(self,otherPlayer):
         # initialTakeTurn()
-        up = (self.row + 1, self.col)
-        down = (self.row - 1, self.col)
+        up = (self.row - 1, self.col)
+        down = (self.row + 1, self.col)
         right = (self.row, self.col + 1)
         left = (self.row, self.col - 1)
         multiDirectionalList = [up,down,right,left]
-        i = 0
+        #make i a field to reuse it, only set to zero in certain scenarios
         if self.hit == True :
-            if multiDirectionalList[i][0] <= 9 and multiDirectionalList[i][1] <= 9:
-                if not otherPlayer.gridShips.isSpaceWater(multiDirectionalList[i][0], multiDirectionalList[i][1]):  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
+            if multiDirectionalList[self.i][0] <= 9 and multiDirectionalList[self.i][0] >= 0 and multiDirectionalList[self.i][1] <= 9 and multiDirectionalList[self.i][1] >= 0 :
+                if not otherPlayer.gridShips.isSpaceWater(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1]) and otherPlayer.gridShips.returnLocation(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1]) != "O":  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
                     print("hit")
-                    otherPlayer.gridShips.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
-                    self.gridShots.changeSingleSpace(shotLocationRow, shotLocationCol, "x")
-                    self.row = multiDirectionalList[i][0]
-                    self.col = multiDirectionalList[i][1]
-                    initialTT = False
+                    otherPlayer.gridShips.changeSingleSpace(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1], "x")
+                    self.gridShots.changeSingleSpace(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1], "x")
+                    self.row = multiDirectionalList[self.i][0]#fix this portion
+                    self.col = multiDirectionalList[self.i][1]#fix this portion
+                    self.initialTT = False
                 else :
                     print("miss")
-                    if i < len(multiDirectionalList) :
-                        i = i + 1
+                    otherPlayer.gridShips.changeSingleSpace(multiDirectionalList[self.i][0],multiDirectionalList[self.i][1] , "O")
+                    self.gridShots.changeSingleSpace(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1], "O")
+                    if self.i < len(multiDirectionalList) :
+                        self.i = self.i + 1
                     else :
-                        initialTT = True
+                        self.i = 0
+                        self.hit = False
+                        self.initialTT = True
         if self.initialTT == True :
-            initialTakeTurn()
+            self.initialTakeTurn(otherPlayer)
 
 
     def stillHasShips(self):
-        for i in range(10):
+        for y in range(10):
             for j in range(10):
-                if self.gridShips.returnLocation(i, j) == "S" or "A" or "B" or "C" or "D":
+                if self.gridShips.returnLocation(y, j) == "S" or "A" or "B" or "C" or "D":
                     return True
         return False
 
