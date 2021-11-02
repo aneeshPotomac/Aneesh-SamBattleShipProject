@@ -9,8 +9,12 @@ def Play(cp, hp): # this method makes each player take a turn, printing the grid
     print(hp.stillHasShips())
     while cp.stillHasShips() and hp.stillHasShips():
         print("loop running again")
+        cp.printGrids()
+        print("printed cp grids")
         cp.takeTurn(hp)
         print("cp took turn")
+        cp.printGrids()
+        print("printed cp grid")
         hp.printGrids()
         print("printed hp grid")
         hp.takeTurn(cp)
