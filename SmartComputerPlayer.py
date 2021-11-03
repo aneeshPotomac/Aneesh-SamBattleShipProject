@@ -36,8 +36,17 @@ class SmartComputerPlayer(Player):
                         break
 
     def initialTakeTurn(self,otherPlayer):
-        shotLocationRow = random.randint(0, 9)
-        shotLocationCol = random.randint(0, 9)
+        same_num = True
+        while same_num:  # making sure we have a different number than previously
+            row_col = random.randint(0, 99)
+            if row_col <= 9:  # if the number is greater than 10 we are in first row
+                shotLocationRow = 0
+                ShotLocationCol = row_col
+            else:  # row = first digit column = second digit
+                shotLocationRow = row_col // 10
+                shotLocationCol = row_col % 10
+            if self.gridShots.returnLocation(shotLocationRow, shotLocationCol) == "~":  # check if we haven't shot there before
+                same_num = False
         self.hit = False
         if not otherPlayer.gridShips.isSpaceWater(shotLocationRow,shotLocationCol):  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
             print("hit")
