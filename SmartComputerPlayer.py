@@ -69,8 +69,8 @@ class SmartComputerPlayer(Player):
         left = (self.row, self.col - 1)
         multiDirectionalList = [up,down,right,left]
         #make i a field to reuse it, only set to zero in certain scenarios
-        if self.hit == True :
-            if multiDirectionalList[self.i][0] <= 9 and multiDirectionalList[self.i][0] >= 0 and multiDirectionalList[self.i][1] <= 9 and multiDirectionalList[self.i][1] >= 0 :
+        if self.hit == True : # if the random shot was a hit we want to shoot adjacent
+            if multiDirectionalList[self.i][0] <= 9 and multiDirectionalList[self.i][0] >= 0 and multiDirectionalList[self.i][1] <= 9 and multiDirectionalList[self.i][1] >= 0 : # check if shot is in range
                 if not otherPlayer.gridShips.isSpaceWater(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1]) and otherPlayer.gridShips.returnLocation(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1]) != "O":  # if the space is a ship print hit and update both the gridShot of the player and the gidShips of the otherPlayer with an x
                     print("hit")
                     otherPlayer.gridShips.changeSingleSpace(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1], "x")
@@ -78,23 +78,23 @@ class SmartComputerPlayer(Player):
                     self.row = multiDirectionalList[self.i][0]#fix this portion
                     self.col = multiDirectionalList[self.i][1]#fix this portion
                     self.initialTT = False
-                else :
+                else : # if we missed print miss
                     print("miss")
                     otherPlayer.gridShips.changeSingleSpace(multiDirectionalList[self.i][0],multiDirectionalList[self.i][1] , "O")
                     self.gridShots.changeSingleSpace(multiDirectionalList[self.i][0], multiDirectionalList[self.i][1], "O")
                     if self.i < len(multiDirectionalList) :
                         self.i = self.i + 1
-                    else :
+                    else :# if we iterate through all the adjacent directins
                         self.i = 0
                         self.hit = False
                         self.initialTT = True
-        if self.initialTT == True :
+        if self.initialTT == True : #if true run initial take turn
             self.initialTakeTurn(otherPlayer)
 
 
     def stillHasShips(self):
-        for y in range(10):
-            for j in range(10):
+        for y in range(10): # we want to check all rows
+            for j in range(10):# we want to check all columns to see if they still have ships
                 if self.gridShips.returnLocation(y, j) == "S" or "A" or "B" or "C" or "D":
                     return True
         return False
